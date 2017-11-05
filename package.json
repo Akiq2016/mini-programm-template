@@ -1,0 +1,28 @@
+{
+  "name": "mini-programm-template",
+  "version": "0.0.1",
+  "description": "mini-programm-template",
+  "main": "src/app.js",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "del": "^3.0.0",
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-babel": "^7.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akiq2016/mini-programm-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akiq2016/mini-programm-template/issues"
+  },
+  "homepage": "https://github.com/Akiq2016/mini-programm-template#readme",
+  "dependencies": {
+    "babel-preset-env": "^1.6.1"
+  }
+}
