@@ -1,0 +1,11 @@
+{
+  "pages":[
+  ],
+  "window":{
+    "backgroundColor": "#666",
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "template",
+    "navigationBarTextStyle":"black"
+  }
+}
