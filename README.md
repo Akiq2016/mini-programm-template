@@ -31,3 +31,4 @@
 - [ ] 支持 pug
 - [ ] 支持 scss
 - [ ] 支持 async / await
+- [ ] 使用 WEUI

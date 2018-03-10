@@ -1,0 +1,7 @@
+{
+  "setting": {
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  }
+}
