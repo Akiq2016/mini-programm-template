@@ -1,10 +1,10 @@
-import Promise from "../assets/promise"
+import Promise from '../assets/promise'
 import regeneratorRuntime from '../assets/regenerator'
 import Tools from '../utils/tools'
-import handleRequiredError from "handleRequiredError"
+import handleRequiredError from 'handleRequiredError'
 
 export default async () => {
-  let info, T = new Tools;
+  let info, T = new Tools
   try {
     info = await T.wxPromise(wx.getUserInfo)()
   } catch (e) {

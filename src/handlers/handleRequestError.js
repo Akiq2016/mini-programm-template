@@ -1,4 +1,4 @@
-import handleRequiredError from "handleRequiredError"
+import handleRequiredError from 'handleRequiredError'
 
 export default err => {
   const App = getApp()
@@ -7,7 +7,7 @@ export default err => {
     if (err.status) handleRequiredError(err.message)
     return
   }
-  switch(err.http_status) {
+  switch (err.http_status) {
     case 401:
       App.Tools.wxPromise(wx.showModal)({
         title: '提示',
@@ -15,12 +15,12 @@ export default err => {
         showCancel: false,
         confirmColor: '#ff0000'
       }).then(() => {
-        App.getUserInfo();
-        wx.showLoading({ title: "重新登录" })
+        App.getUserInfo()
+        wx.showLoading({ title: '重新登录' })
       })
-      break;
+      break
     default:
-      handleRequiredError(err.msg);
+      handleRequiredError(err.msg)
       break
   }
 }

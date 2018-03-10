@@ -1,9 +1,6 @@
 let Promise = require('../assets/promise')
 
 class Tools {
-
-  constructor() {}
-
   /**
    * let wx.function use promise
    * @param  {Function} fn [description]

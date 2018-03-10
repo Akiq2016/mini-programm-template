@@ -11,10 +11,6 @@ module.exports = {
   },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   extends: 'standard',
-  // required to lint *.vue files
-  plugins: [
-    'html'
-  ],
   // add your custom rules here
   'rules': {
     // allow paren-less arrow functions
@@ -22,6 +18,11 @@ module.exports = {
     // allow async-await
     'generator-star-spacing': 0,
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
+    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-undef': 1,
+    'padded-blocks': 1,
+    'no-unused-vars': 1,
+    'new-parens': 0,
+    'one-var': 0
   }
 }

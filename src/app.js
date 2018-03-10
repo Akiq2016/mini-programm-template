@@ -8,7 +8,7 @@ import Tools from 'utils/tools'
 App({
   async getUserInfo (cb) {
     let login, key, user, dolog
-    if (this.globalData.userInfo && typeof cb == "function") {
+    if (this.globalData.userInfo && typeof cb === 'function') {
       cb(this.globalData.userInfo)
       return
     }
@@ -17,26 +17,27 @@ App({
       login = await this.Tools.wxPromise(wx.login)()
 
       // get session_key
-      key = this.Http.get("/login/getSessionKey", { code: res.code })
-      if (key.status == 0)
+      key = this.Http.get('/login/getSessionKey', { code: res.code })
+      if (+key.status === 0) {
         console.log('获取session_key失败: ' + key.data.msg)
-      else
-        wx.setStorage({ key: "dr_session", data: key.data.dr_session })
+      } else {
+        wx.setStorage({ key: 'dr_session', data: key.data.dr_session })
+      }
 
       // get user information
       user = await handleUserInfor()
-      if (!user) return
+      if (!user) { return }
       Object.assign(this.globalData, {
         login: true,
         iv: user.iv,
         userInfo: user.userInfo,
         encryptedData: user.encryptedData
       })
-      typeof cb == "function" && cb(this.globalData.userInfo);
+      typeof cb === 'function' && cb(this.globalData.userInfo)
 
       // login
       dolog = this.Http.get('/login/doLogin', {
-        dr_session: wx.getStorageSync("dr_session"),
+        dr_session: wx.getStorageSync('dr_session'),
         encryptedData: user.encryptedData,
         iv: user.iv
       })
