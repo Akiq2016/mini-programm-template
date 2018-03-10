@@ -1,0 +1,6 @@
+@import '../../style/index';
+
+div {
+  color: $orange;
+  @include flex-center();
+}

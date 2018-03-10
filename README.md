@@ -27,7 +27,6 @@
 # Version 2
 
 - [x] 上 eslint
-- [ ] 支持 pug
 - [ ] 支持 scss
 - [x] 支持 async / await
 - [ ] 使用 WEUI
