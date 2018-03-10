@@ -5,8 +5,10 @@
   "main": "src/app.js",
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.6.1",
     "del": "^3.0.0",
+    "eslint": "^3.19.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-babel": "^7.0.0"
   },
