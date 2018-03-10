@@ -26,8 +26,8 @@
 
 # Version 2
 
-- [ ] 上 eslint
+- [x] 上 eslint
 - [ ] 支持 pug
 - [ ] 支持 scss
-- [ ] 支持 async / await
+- [x] 支持 async / await
 - [ ] 使用 WEUI
