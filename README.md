@@ -1,4 +1,4 @@
-# mini-programm-template
+# mini-programm-template 1.0.0
 
 #### 模板结构
 
@@ -23,3 +23,11 @@
 `regenerator`编译后会生成`promise`，在低端机型中会再次出现`promise`兼容问题。
 
 因此请在`regenerator`前引入`promise`。
+
+# Version 2
+
+- [ ] 上 webpack4
+- [ ] 上 eslint
+- [ ] 支持 pug
+- [ ] 支持 scss
+- [ ] 支持 async / await
