@@ -1,0 +1,16 @@
+@import 'color';
+@import 'size';
+
+$title-color: lighten($black, 0.75);
+$body-color: lighten($black, 0.65);
+$caption-color: lighten($black, 0.43);
+$disabled-color: lighten($black, 0.25);
+$link: #108EE9;
+
+$BG_BODY: #EFEFF4;
+$BG_LINE: rgba(2, 0, 0, 0);
+$T1: rgba(9, 0, 0, 0);
+$T2: rgba(5, 0, 0, 0);
+$T3: rgba(2, 0, 0, 0);
+$TW: $orange;
+$TD: $orange-darken;

@@ -4,6 +4,7 @@ const babel = require('gulp-babel')
 const eslint = require('gulp-eslint')
 const sass = require('gulp-sass')
 const postcss = require('gulp-postcss')
+const autoprefixer = require('autoprefixer')
 
 gulp.task('clean:dist', done =>
   del(['dist'])
@@ -25,7 +26,7 @@ gulp.task('build:js', done =>
 gulp.task('sass:css', done =>
   gulp.src('src/**/*.scss')
     .pipe(sass())
-    .pipe(postcss())
+    .pipe(postcss([ autoprefixer() ]))
     .pipe(gulp.dest('dist'))
 )
 

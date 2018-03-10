@@ -1,0 +1,30 @@
+@import '../theme/core';
+@import '../mixin/core';
+@import 'base';
+
+page, view, navigator, picker, image,button {
+  box-sizing: border-box;
+}
+
+page {
+  height: 100%;
+  background: $white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  letter-spacing: 1rpx;
+  font-size: 36rpx;
+  font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+  position: relative;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $white;
+  position: relative;
+  word-break: break-all;
+}
+
