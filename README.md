@@ -26,7 +26,6 @@
 
 # Version 2
 
-- [ ] 上 webpack4
 - [ ] 上 eslint
 - [ ] 支持 pug
 - [ ] 支持 scss
