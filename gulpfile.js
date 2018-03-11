@@ -5,6 +5,7 @@ const eslint = require('gulp-eslint')
 const sass = require('gulp-sass')
 const postcss = require('gulp-postcss')
 const autoprefixer = require('autoprefixer')
+const rename = require('gulp-rename')
 
 gulp.task('clean:dist', done =>
   del(['dist'])
@@ -27,6 +28,9 @@ gulp.task('sass:css', done =>
   gulp.src('src/**/*.scss')
     .pipe(sass())
     .pipe(postcss([ autoprefixer() ]))
+    .pipe(rename(path => {
+      path.extname = '.wxss'
+    }))
     .pipe(gulp.dest('dist'))
 )
 
