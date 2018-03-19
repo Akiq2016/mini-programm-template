@@ -1,6 +1,6 @@
 import Config from 'httpconfig'
 
-let Promise = require('../assets/promise')
+let Promise = require('../lib/promise')
 
 class Request {
 

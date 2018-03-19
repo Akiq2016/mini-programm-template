@@ -1,5 +1,5 @@
-import Promise from '../assets/promise'
-import regeneratorRuntime from '../assets/regenerator'
+import Promise from '../lib/promise'
+import regeneratorRuntime from '../lib/regenerator'
 import Tools from '../utils/tools'
 import handleRequiredError from 'handleRequiredError'
 

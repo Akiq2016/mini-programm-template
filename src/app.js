@@ -1,6 +1,6 @@
 // 如果使用async语法，请在顶部依次引入promise和regenerator
-import Promise from 'assets/promise'
-import regeneratorRuntime from 'assets/regenerator'
+import Promise from 'lib/promise'
+import regeneratorRuntime from 'lib/regenerator'
 import handleUserInfor from 'handlers/handleUserInfor'
 import Request from 'utils/http'
 import Tools from 'utils/tools'
