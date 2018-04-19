@@ -6,7 +6,7 @@
 - [x] 支持 async / await
 - [x] 支持 scss
 - [ ] 封装 wx API
-- [ ] 单文件写法（js html css写在一个文件）
+- [ ] 支持 数据监听 watch
 
 ## 目录结构
 
