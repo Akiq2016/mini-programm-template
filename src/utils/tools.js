@@ -7,11 +7,11 @@ class Tools {
    * @return {Function}    [description]
    */
   wxPromise (fn) {
-    return function (obj = {}) {
+    return function (options = {}) {
       return new Promise((resolve, reject) => {
-        obj.success = function (res) { resolve(res) }
-        obj.fail = function (res) { reject(res) }
-        fn(obj)
+        options.success = function (e) { resolve(e) }
+        options.fail = function (err) { reject(err) }
+        fn(options)
       })
     }
   }

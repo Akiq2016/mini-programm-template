@@ -1,11 +1,28 @@
 {
-  "pages":[
+  "window": {
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "我的小程序",
+    "enablePullDownRefresh": false,
+    "navigationStyle": "default",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "light",
+    "backgroundColorBottom": "#FFFFFF"
+  },
+  "networkTimeout": {
+    "request": 30000,
+    "downloadFile": 10000
+  },
+  "pages": [
+    "src/pages/test"
   ],
-  "window":{
-    "backgroundColor": "#666",
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "template",
-    "navigationBarTextStyle":"black"
-  }
+  "subPackages": [
+    {
+      "root": "src/subPages/subTestA",
+      "pages": [
+        "subTestA1"
+      ]
+    }
+  ],
+  "debug": true
 }

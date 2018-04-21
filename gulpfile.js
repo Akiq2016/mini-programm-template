@@ -24,7 +24,7 @@ gulp.task('build:js', done =>
     .pipe(gulp.dest('dist'))
 )
 
-gulp.task('sass:css', done =>
+gulp.task('build:css', done =>
   gulp.src('src/**/*.scss')
     .pipe(sass())
     .pipe(postcss([ autoprefixer() ]))
@@ -39,8 +39,10 @@ gulp.task('build:others', done =>
     .pipe(gulp.dest('dist'))
 )
 
+// run 'gulp watch:src'
 gulp.task('watch:src', done =>
-  gulp.watch('src/**/*.*', gulp.series('clean:dist', 'build:others', 'eslint:js', 'build:js', 'sass:css'))
+  gulp.watch('src/**/*.*', gulp.series('clean:dist', 'build:others', 'eslint:js', 'build:js', 'build:css'))
 )
 
-gulp.task('default', gulp.series('clean:dist', 'build:others', 'eslint:js', 'build:js', 'sass:css'))
+// run 'gulp'
+gulp.task('default', gulp.series('clean:dist', 'build:others', 'eslint:js', 'build:js', 'build:css'))

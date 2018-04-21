@@ -1,11 +1,34 @@
-import Config from 'httpconfig'
+import Promise from '../lib/promise'
+import wxApi from './wxApi.js'
+import CONFIG from '../config/index.js'
+import reLogin from './wx/reLogin.js'
 
-let Promise = require('../lib/promise')
+const STATUS_CODE = {
+  SUCCESS: 200,
+  NO_AUTH: 401
+}
+
+function buildUrl (url) {
+  const basePath = CONFIG.HOST.production
+    ? CONFIG.HOST.pro.reqHost
+    : CONFIG.HOST.dev.reqHost
+
+  if (url.indexOf('https') !== -1) {
+    return url
+  } else {
+    return basePath + url
+  }
+}
+
+function buildHeader () {
+  return {
+    'content-type': 'application/json',
+    'session3rd': wxApi.getStorageSync('session3rd')
+  }
+}
 
 class Request {
-
   constructor (args) {
-    this.basePath = Config.production ? Config.proHttpConfig.reqHost : Config.devHttpConfig.reqHost
     this.get = this.init('GET')
     this.post = this.init('POST')
     this.put = this.init('PUT')
@@ -13,26 +36,19 @@ class Request {
   }
 
   init (method) {
-    let _ = this
-    return (pathname, data) => {
+    return (url, data) => {
       return new Promise((resolve, reject) => {
-        let headers = {
-          'content-type': 'application/json',
-          'session3rd': wx.getStorageSync('session3rd')
-        }
-        wx.request({
-          url: _.basePath + pathname,
+        wxApi.request({
+          url: buildUrl(url),
           data: data,
           method: method,
-          header: headers,
-          success (res) {
-            switch (res.statusCode) {
-              case 200:
-                resolve(res.data)
-                break
-              default:
-                reject(res.data)
-                break
+          header: buildHeader(),
+          success ({ statusCode, data }) {
+            if (statusCode === STATUS_CODE.SUCCESS) {
+              resolve(data)
+            } else if (statusCode === STATUS_CODE.NO_AUTH) {
+              reLogin()
+              reject(data)
             }
           },
           fail (err) {
@@ -42,7 +58,6 @@ class Request {
       })
     }
   }
-
 }
 
 export default Request

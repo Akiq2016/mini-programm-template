@@ -5,7 +5,7 @@
 - [x] 支持 promise
 - [x] 支持 async / await
 - [x] 支持 scss
-- [ ] 封装 wx API
+- [x] 封装 wx API
 - [ ] 支持 数据监听 watch
 
 ## 目录结构
