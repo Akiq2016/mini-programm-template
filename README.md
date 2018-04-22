@@ -1,27 +1,8 @@
-# mini-programm-template 0.0.5
-
-- [x] 开启 eslint
-- [x] 开启 autoprefixer
-- [x] 支持 promise
-- [x] 支持 async / await
-- [x] 支持 scss
-- [x] 封装 wx API
-- [ ] 支持 数据监听 watch
-
-## 目录结构
-
- `src` 为开发目录， `dist` 为编译后目录。在开发者工具中，目录请选择 `dist` 。此模板未使用小程序第三方框架，因此文件结构与官方开发结构一致。
-
-## 微信开发者工具选项设置
-
-**不使用** `es5 -> es6` 功能。
-
-**不使用** `上传代码时样式自动补全` 功能。
-
-## 相关命令
+# mini-programm-template
 
 ```bash
-# 安装依赖
+git clone https://github.com/Akiq2016/mini-programm-template.git
+
 npm install -g gulp-cli
 npm install
 
@@ -33,6 +14,57 @@ npm run dev
 
 # 安装 gulp 的 plugins 后，如果报错找不到 gulp 需手动重新安装 gulp4
 npm install github:gulpjs/gulp#4.0 --save-dev
+```
+
+## Features
+- [x] 开启 eslint
+- [x] 开启 autoprefixer
+- [x] 支持 promise
+- [x] 支持 async / await
+- [x] 支持 scss
+- [x] 封装 wx API
+- [ ] 支持 数据监听 watch
+
+**注意**: 本模板依赖 gulp 进行预处理和编译压缩，因此不使用微信开发者工具提供的相关功能。微信开发者工具选项设置：**不使用** es5 -> es6。**不使用** 上传代码时样式自动补全。（`project.config.json` 已配置）
+
+## Structure
+
+在开发者工具中，小程序目录请选择编译后的 `dist` 。
+
+```bash
+# src 结构
+
+├── assets
+|   ├── [pictures]
+└── └── [icons]
+
+├── config
+|   ├── [global constant]
+└── └── [configuration]
+
+├── lib
+└── └── [libary]
+
+├── pages
+└── └── [package page]
+├── subPages
+└── └── [subPackage page]
+
+├── components
+└── └── [components]
+├── templates
+└── └── [templatea]
+
+├── style
+└── └── [scss]
+
+├── utils
+└── └── [tools]
+
+├── project.config.json
+├── app.js
+├── app.json
+├── app.scss
 ```
 
 ## 关于第三方库的引用
