@@ -53,7 +53,7 @@ npm install github:gulpjs/gulp#4.0 --save-dev
 ├── components
 └── └── [components]
 ├── templates
-└── └── [templatea]
+└── └── [templates]
 
 ├── style
 └── └── [scss]
