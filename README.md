@@ -67,7 +67,7 @@ npm install github:gulpjs/gulp#4.0 --save-dev
 ├── app.scss
 ```
 
-## 关于第三方库的引用
+## Libary
 
 #### Promise
 
@@ -80,3 +80,14 @@ npm install github:gulpjs/gulp#4.0 --save-dev
 Uncaught ReferenceError: regeneratorRuntime is not defined
 ```
 需要引入 `Facebook/regenerator` 解决报错。 `regenerator` 编译后会生成 `promise` ，在低端机型中会再次出现 `promise` 兼容问题。因此手动在 `regenerator` 库开头引入了第三方 `promise` 。
+
+## 其他推荐
+[零配置, 无侵入式的小程序开发工具](https://github.com/axetroy/webuild)
+
+[为你的小程序添加 mobx 数据层驱动](https://github.com/80percent/wechat-weapp-mobx)
+
+[提供小程序一种更通用的方式来观察和响应data实例上的数据变动](https://github.com/jayZOU/watch)
+
+[minapp 是为开发微信小程序而打造的一整套提升开发体验的工具](https://github.com/qiu8310/minapp)
+
+[微信小程序所有API promise化，支持await、支持请求列队](https://github.com/bigmeow/minapp-api-promise)
