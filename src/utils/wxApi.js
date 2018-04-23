@@ -93,7 +93,7 @@ function reLaunch ({ url, ...data }) {
   linkTo({ url, data, type: 'reLaunch' })
 }
 
-async function getUserInfo () {
+let getUserInfo = async () => {
   let res
   let T = new Tools
 

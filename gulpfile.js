@@ -34,15 +34,23 @@ gulp.task('build:css', done =>
     .pipe(gulp.dest('dist'))
 )
 
+gulp.task('build:html', done =>
+  gulp.src('src/**/*.html')
+    .pipe(rename(path => {
+      path.extname = '.wxml'
+    }))
+    .pipe(gulp.dest('dist'))
+)
+
 gulp.task('build:others', done =>
-  gulp.src(['src/**/*.*', '!src/**/*.js', '!src/**/*.scss'])
+  gulp.src(['src/**/*.*', '!src/**/*.js', '!src/**/*.scss', '!src/**/*.html'])
     .pipe(gulp.dest('dist'))
 )
 
 // run 'gulp watch:src'
 gulp.task('watch:src', done =>
-  gulp.watch('src/**/*.*', gulp.series('clean:dist', 'build:others', 'eslint:js', 'build:js', 'build:css'))
+  gulp.watch('src/**/*.*', gulp.series('build:others', 'eslint:js', 'build:js', 'build:css', 'build:html'))
 )
 
 // run 'gulp'
-gulp.task('default', gulp.series('clean:dist', 'build:others', 'eslint:js', 'build:js', 'build:css'))
+gulp.task('default', gulp.series('clean:dist', 'build:others', 'eslint:js', 'build:js', 'build:css', 'build:html'))

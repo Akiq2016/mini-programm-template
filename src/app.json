@@ -14,15 +14,7 @@
     "downloadFile": 10000
   },
   "pages": [
-    "src/pages/test"
-  ],
-  "subPackages": [
-    {
-      "root": "src/subPages/subTestA",
-      "pages": [
-        "subTestA1"
-      ]
-    }
+    "pages/samplePage/samplePage"
   ],
   "debug": true
 }

@@ -1,9 +1,9 @@
 // 如果使用async语法，请在顶部依次引入promise和regenerator
 import Promise from 'lib/promise'
 import regeneratorRuntime from 'lib/regenerator'
-import handleUserInfor from 'handlers/handleUserInfor'
 import Request from 'utils/http'
 import Tools from 'utils/tools'
+import wxApi from 'utils/wxApi'
 
 App({
   async getUserInfo (cb) {
@@ -25,7 +25,7 @@ App({
       }
 
       // get user information
-      user = await handleUserInfor()
+      user = await wxApi.getUserInfo()
       if (!user) { return }
       Object.assign(this.globalData, {
         login: true,
@@ -47,6 +47,7 @@ App({
   },
   Http: new Request,
   Tools: new Tools,
+  wxApi: wxApi,
   globalData: {
     login: false,
     userInfo: null
