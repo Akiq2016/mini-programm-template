@@ -2,6 +2,7 @@
 
 ```bash
 git clone https://github.com/Akiq2016/mini-programm-template.git
+cd mini-programm-template
 
 npm install -g gulp-cli
 npm install
@@ -13,7 +14,7 @@ npm run build
 npm run dev
 
 # 安装 gulp 的 plugins 后，如果报错找不到 gulp 需手动重新安装 gulp4
-npm install github:gulpjs/gulp#4.0 --save-dev
+npm install gulp@next --save-dev
 ```
 
 ## Features
@@ -31,7 +32,7 @@ npm install github:gulpjs/gulp#4.0 --save-dev
 
 在开发者工具中，小程序目录请选择编译后的 `dist` 。
 
-```bash
+```shell
 # src 结构
 
 ├── assets
