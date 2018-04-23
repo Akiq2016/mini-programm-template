@@ -6,6 +6,11 @@ import Tools from 'utils/tools'
 import wxApi from 'utils/wxApi'
 
 App({
+  onLaunch (options) {
+    this.getUserInfo()
+  },
+
+  // 登陆流程代码参考
   async getUserInfo (cb) {
     let login, key, user, dolog
     if (this.globalData.userInfo && typeof cb === 'function') {
@@ -17,7 +22,7 @@ App({
       login = await this.Tools.wxPromise(wx.login)()
 
       // get session_key
-      key = this.Http.get('/login/getSessionKey', { code: res.code })
+      key = this.Http.get('/login/getSessionKey', { code: login.code })
       if (+key.status === 0) {
         console.log('获取session_key失败: ' + key.data.msg)
       } else {
@@ -42,9 +47,10 @@ App({
         iv: user.iv
       })
     } catch (e) {
-      console.log(e)
+      console.log('登陆坏掉了', e)
     }
   },
+
   Http: new Request,
   Tools: new Tools,
   wxApi: wxApi,
