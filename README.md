@@ -25,6 +25,9 @@ npm install gulp@next --save-dev
 - [x] 支持 scss
 - [x] 封装 wx API
 
+- [ ] 监听数据变化 watch
+- [ ] 跨页面事件通讯 event
+
 **注意**: 本模板依赖 gulp 进行预处理和编译压缩，因此不使用微信开发者工具提供的相关功能。微信开发者工具选项设置：**不使用** es5 -> es6。**不使用** 上传代码时样式自动补全。（`project.config.json` 已配置）
 
 ## Structure
