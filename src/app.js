@@ -1,6 +1,6 @@
 // 如果使用async语法，请在顶部依次引入promise和regenerator
-import Promise from 'lib/promise'
-import regeneratorRuntime from 'lib/regenerator'
+import Promise from 'libs/promise'
+import regeneratorRuntime from 'libs/regenerator'
 import Request from 'utils/http'
 import Tools from 'utils/tools'
 import wxApi from 'utils/wxApi'

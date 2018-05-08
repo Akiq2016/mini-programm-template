@@ -1,4 +1,4 @@
-import Promise from '../lib/promise'
+import Promise from '../libs/promise'
 import wxApi from './wxApi.js'
 import CONFIG from '../config/index.js'
 import reLogin from './wx/reLogin.js'

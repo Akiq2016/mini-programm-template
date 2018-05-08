@@ -1,4 +1,4 @@
-let Promise = require('../lib/promise')
+let Promise = require('../libs/promise')
 
 class Tools {
   /**

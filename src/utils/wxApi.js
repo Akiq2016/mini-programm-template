@@ -1,5 +1,5 @@
-import Promise from '../lib/promise'
-import regeneratorRuntime from '../lib/regenerator'
+import Promise from '../libs/promise'
+import regeneratorRuntime from '../libs/regenerator'
 import CONFIG from '../config/index.js'
 import Tools from './tools'
 
