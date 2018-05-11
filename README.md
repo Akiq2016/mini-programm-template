@@ -83,6 +83,53 @@ Uncaught ReferenceError: regeneratorRuntime is not defined
 ```
 需要引入 `Facebook/regenerator` 解决报错。 `regenerator` 编译后会生成 `promise` ，在低端机型中会再次出现 `promise` 兼容问题。因此手动在 `regenerator` 库开头引入了第三方 `promise` 。
 
+#### event.js
+
+跨页面通讯机制，原理是发布订阅模式，多传了个当前page的作用域this，方便之后回调时使用。使用方法：
+
+```js
+// 入口文件app.js
+import Event from './libs/event.js'
+
+App({
+  onLaunch: function(options) {
+    // Do something initial when launch.
+  },
+  onShow: function(options) {
+      // Do something when show.
+  },
+  onHide: function() {
+      // Do something when hide.
+  },
+  onError: function(msg) {
+    console.log(msg)
+  },
+  globalData: 'I am global data',
+  event: new Event(),
+})
+```
+
+```js
+// A页面
+Page({
+  data: {
+    dataA: 233,
+  },
+  events: {
+    eventA(arg1) {
+      console.log(this, arg1, data1)
+    }
+  },
+})
+
+// B页面
+Page({
+  someHandler() {
+    getApp().event.trigger('eventA', { data: 888 })
+  }
+})
+```
+
 ## 其他推荐
 [零配置, 无侵入式的小程序开发工具](https://github.com/axetroy/webuild)
 
