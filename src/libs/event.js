@@ -1,6 +1,6 @@
 export default class Event {
   constructor () {
-    this.EventObj = {}
+    this.eventObj = {}
   }
 
   /**
@@ -43,9 +43,9 @@ export default class Event {
    * @param {object} args 参数对象
    */
   trigger (key, ...args) {
-    if (!this.EventObj[key]) return
+    if (!this.eventObj[key]) return
 
-    this.EventObj[key].forEach(item => {
+    this.eventObj[key].forEach(item => {
       item.callback.apply(item.pageInstance, args)
     })
   }
@@ -56,22 +56,22 @@ export default class Event {
    * @param {object} pageInstance 页面实例
    */
   remove (key, pageInstance) {
-    if (!this.EventObj[key]) return
+    if (!this.eventObj[key]) return
 
-    let callbackList = this.EventObj[key]
+    let callbackList = this.eventObj[key]
     let _pageInstance = pageInstance || getCurrentPages()[getCurrentPages().length - 1]
     let index = callbackList.findIndex(item => item.pageInstance === _pageInstance)
 
     if (~index) callbackList.splice(index, 1)
-    if (callbackList.length === 0) delete this.EventObj[key]
+    if (callbackList.length === 0) delete this.eventObj[key]
   }
 
   // removeAll 移除事件 key 的所有回调
   removeAll (key) {
     if (key) {
-      delete this.EventObj[key]
+      delete this.eventObj[key]
     } else {
-      this.EventObj = {}
+      this.eventObj = {}
     }
   }
 }

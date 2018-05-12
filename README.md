@@ -83,6 +83,67 @@ Uncaught ReferenceError: regeneratorRuntime is not defined
 ```
 需要引入 `Facebook/regenerator` 解决报错。 `regenerator` 编译后会生成 `promise` ，在低端机型中会再次出现 `promise` 兼容问题。因此手动在 `regenerator` 库开头引入了第三方 `promise` 。
 
+#### event.js
+
+跨页面通讯机制，原理是发布订阅模式。具体使用请看源码注释。及使用例子 `pages/eventSamplePage`，`pages/eventSamplePage2`。
+
+简单使用介绍：
+```js
+// 入口文件app.js
+import Event from 'libs/event.js'
+
+App({
+  onLaunch: function(options) {
+  },
+
+  // 添加一个全局的事件总线
+  event: new Event(),
+})
+```
+
+```js
+// 写法一：在页面中写events对象，
+// 并在合适的地方（比如页面生命周期钩子中）进行事件初始化 initEventOnPage
+// initEventOnPage 会帮助遍历events中的事件 逐个进行listen
+// 且改写了onUnload钩子，使页面销毁时，将页面中事件销毁
+Page({ // A页面
+  events: {
+    eventA(arg1) {
+    },
+    eventB(arg2) {
+    },
+  },
+  onLoad() {
+    getApp().event.initEventOnPage(this)
+  },
+})
+
+Page({ // B页面
+  someHandler() {
+    getApp().event.trigger('eventA', { data: 888 })
+  }
+})
+```
+
+```js
+// 写法二：直接手写getApp().event.listen(keyname, callback, pageInstance)
+// 需要在页面销毁钩子中手动写getApp().event.remove(key, pageInstance)
+Page({ // A页面
+  someHandler() {
+    getApp().event.listen('eventA', function (arg) { console.log(arg) }, this)
+  }
+  onUnload() {
+    getApp().event.remove('eventA', this)
+  }
+})
+
+Page({ // B页面
+  someHandler() {
+    getApp().event.trigger('eventA', { data: 888 })
+  }
+})
+```
+
 ## 其他推荐
 [零配置, 无侵入式的小程序开发工具](https://github.com/axetroy/webuild)
 

@@ -53,16 +53,16 @@ function linkTo ({ url, type, data }) {
   if (AUTH) {
     switch (type) {
       case 'navigateTo':
-        wx.navigateTo(url)
+        wx.navigateTo({url})
         break
       case 'redirectTo':
-        wx.redirectTo(url)
+        wx.redirectTo({url})
         break
       case 'switchTab':
-        wx.switchTab(url)
+        wx.switchTab({url})
         break
       case 'reLaunch':
-        wx.reLaunch(url)
+        wx.reLaunch({url})
         break
     }
   } else {

@@ -4,10 +4,11 @@ import regeneratorRuntime from 'libs/regenerator'
 import Request from 'utils/http'
 import Tools from 'utils/tools'
 import wxApi from 'utils/wxApi'
+import Event from 'libs/event.js'
 
 App({
   onLaunch (options) {
-    this.getUserInfo()
+    // this.getUserInfo()
   },
 
   // 登陆流程代码参考
@@ -53,6 +54,7 @@ App({
 
   Http: new Request,
   Tools: new Tools,
+  event: new Event,
   wxApi: wxApi,
   globalData: {
     login: false,
