@@ -13,7 +13,7 @@ function buildUrl (url) {
     ? CONFIG.HOST.pro.reqHost
     : CONFIG.HOST.dev.reqHost
 
-  if (url.indexOf('https') !== -1) {
+  if (~url.indexOf('https')) {
     return url
   } else {
     return basePath + url
