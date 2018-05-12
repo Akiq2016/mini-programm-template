@@ -85,45 +85,59 @@ Uncaught ReferenceError: regeneratorRuntime is not defined
 
 #### event.js
 
-跨页面通讯机制，原理是发布订阅模式，多传了个当前page的作用域this，方便之后回调时使用。使用方法：
+跨页面通讯机制，原理是发布订阅模式。具体使用请看源码注释。及使用例子 `pages/eventSamplePage`，`pages/eventSamplePage2`。
 
+简单使用介绍：
 ```js
 // 入口文件app.js
-import Event from './libs/event.js'
+import Event from 'libs/event.js'
 
 App({
   onLaunch: function(options) {
-    // Do something initial when launch.
   },
-  onShow: function(options) {
-      // Do something when show.
-  },
-  onHide: function() {
-      // Do something when hide.
-  },
-  onError: function(msg) {
-    console.log(msg)
-  },
-  globalData: 'I am global data',
+
+  // 添加一个全局的事件总线
   event: new Event(),
 })
 ```
 
 ```js
-// A页面
-Page({
-  data: {
-    dataA: 233,
-  },
+// 写法一：在页面中写events对象，
+// 并在合适的地方（比如页面生命周期钩子中）进行事件初始化 initEventOnPage
+// initEventOnPage 会帮助遍历events中的事件 逐个进行listen
+// 且改写了onUnload钩子，使页面销毁时，将页面中事件销毁
+Page({ // A页面
   events: {
     eventA(arg1) {
-      console.log(this, arg1, data1)
-    }
+    },
+    eventB(arg2) {
+    },
+  },
+  onLoad() {
+    getApp().event.initEventOnPage(this)
   },
 })
 
-// B页面
-Page({
+Page({ // B页面
+  someHandler() {
+    getApp().event.trigger('eventA', { data: 888 })
+  }
+})
+```
+
+```js
+// 写法二：直接手写getApp().event.listen(keyname, callback, pageInstance)
+// 需要在页面销毁钩子中手动写getApp().event.remove(key, pageInstance)
+Page({ // A页面
+  someHandler() {
+    getApp().event.listen('eventA', function (arg) { console.log(arg) }, this)
+  }
+  onUnload() {
+    getApp().event.remove('eventA', this)
+  }
+})
+
+Page({ // B页面
   someHandler() {
     getApp().event.trigger('eventA', { data: 888 })
   }

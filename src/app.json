@@ -14,7 +14,8 @@
     "downloadFile": 10000
   },
   "pages": [
-    "pages/samplePage/samplePage"
+    "pages/eventSamplePage/eventSamplePage",
+    "pages/eventSamplePage2/eventSamplePage2"
   ],
   "debug": true
 }
