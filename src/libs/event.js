@@ -9,6 +9,7 @@ export default class Event {
    * @param {object} page 小程序页面实例this
    */
   initEventOnPage (page) {
+    const that = this
     if (!page || !page.events) return
 
     Object.keys(page.events).forEach(key => {
@@ -18,7 +19,7 @@ export default class Event {
     let onUnload = page.onUnload
     page.onUnload = function () {
       Object.keys(page.events).forEach(key => {
-        this.remove(key, page)
+        that.remove(key, page)
       })
       onUnload && onUnload.call(page)
     }
