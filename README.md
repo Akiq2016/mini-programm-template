@@ -25,7 +25,7 @@ npm install gulp@next --save-dev
 - [x] 支持 scss
 - [x] 封装 wx API
 - [x] 跨页面事件通讯 event
-- [ ] 监听数据变化 watch
+- [x] 监听数据变化 watch
 
 **注意**: 本模板依赖 gulp 进行预处理和编译压缩，因此不使用微信开发者工具提供的相关功能。微信开发者工具选项设置：**不使用** es6 -> es5。**不使用** 上传代码时样式自动补全。（`project.config.json` 已配置）
 
@@ -149,7 +149,7 @@ Page({ // B页面
 
 [为你的小程序添加 mobx 数据层驱动](https://github.com/80percent/wechat-weapp-mobx)
 
-[提供小程序一种更通用的方式来观察和响应data实例上的数据变动](https://github.com/jayZOU/watch)
+[提供小程序一种更通用的方式来观察和响应data实例上的数据变动](https://github.com/akiq2016/watch)
 
 [minapp 是为开发微信小程序而打造的一整套提升开发体验的工具](https://github.com/qiu8310/minapp)
 
