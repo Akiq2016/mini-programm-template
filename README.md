@@ -20,7 +20,7 @@ npm install gulp@next --save-dev
 ## Features
 - [x] 开启 eslint
 - [x] 开启 autoprefixer
-- [x] 兼容 promise (for 低端机型)
+- [x] 兼容 promise
 - [x] 支持 async / await
 - [x] 支持 scss
 - [x] 封装 wx API
