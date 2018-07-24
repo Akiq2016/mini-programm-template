@@ -1,8 +1,8 @@
 # mini-programm-template
 
 ```bash
-git clone https://github.com/Akiq2016/mini-programm-template.git
-cd mini-programm-template
+git clone https://github.com/Akiq2016/mini-programm-template.git yourFolderName
+cd yourFolderName
 
 npm install -g gulp-cli
 npm install
@@ -20,7 +20,7 @@ npm install gulp@next --save-dev
 ## Features
 - [x] 开启 eslint
 - [x] 开启 autoprefixer
-- [x] 支持 promise
+- [x] 兼容 promise (for 低端机型)
 - [x] 支持 async / await
 - [x] 支持 scss
 - [x] 封装 wx API
@@ -73,7 +73,7 @@ npm install gulp@next --save-dev
 
 #### Promise
 
-部分低端机型(eg. iPhone5)环境中不存在 `native promise` ，开发者需要自行引入 `promise` 库。小程序不运行在浏览器中，不存在 `document/window` 等对象，不能引入依赖这些对象的第三方库，因此推荐使用 `bluebird` 。
+部分低端机型(eg. iPhone5)环境中不存在 `native promise` ，开发者需要自行引入 `promise` 库([issue](https://github.com/Akiq2016/mini-programm-template/issues/2))。小程序不运行在浏览器中，不存在 `document/window` 等对象，不能引入依赖这些对象的第三方库，因此推荐使用 `bluebird` 。
 
 #### async/await 语法
 
@@ -102,10 +102,10 @@ App({
 ```
 
 ```js
-// 写法一：在页面中写events对象，
-// 并在合适的地方（比如页面生命周期钩子中）进行事件初始化 initEventOnPage
+// 写法一：在页面中写events对象
+// 在合适的地方（比如页面生命周期钩子中）进行事件初始化 initEventOnPage
 // initEventOnPage 会帮助遍历events中的事件 逐个进行listen
-// 且改写了onUnload钩子，使页面销毁时，将页面中事件销毁
+// 且改写了onUnload钩子，令页面在销毁时，将页面中事件销毁
 Page({ // A页面
   events: {
     eventA(arg1) {
@@ -126,8 +126,9 @@ Page({ // B页面
 ```
 
 ```js
-// 写法二：直接手写getApp().event.listen(keyname, callback, pageInstance)
-// 需要在页面销毁钩子中手动写getApp().event.remove(key, pageInstance)
+// 写法二：手动注册事件
+// 注册 getApp().event.listen(keyname, callback, pageInstance)
+// 销毁 getApp().event.remove(keyname, pageInstance)
 Page({ // A页面
   someHandler() {
     getApp().event.listen('eventA', function (arg) { console.log(arg) }, this)
@@ -144,13 +145,60 @@ Page({ // B页面
 })
 ```
 
-## 其他推荐
-[零配置, 无侵入式的小程序开发工具](https://github.com/axetroy/webuild)
+#### watch.js
 
-[为你的小程序添加 mobx 数据层驱动](https://github.com/80percent/wechat-weapp-mobx)
+数据监听，原理是发布订阅模式。具体使用请看源码注释。[源库地址](https://github.com/jayZOU/watch)
 
-[提供小程序一种更通用的方式来观察和响应data实例上的数据变动](https://github.com/akiq2016/watch)
+简单使用介绍：
+```js
+// A页面
+import Watch from '../../libs/watch'
 
-[minapp 是为开发微信小程序而打造的一整套提升开发体验的工具](https://github.com/qiu8310/minapp)
+let watch;
+Page({
+  data: {
+    a: '1',
+    b: {
+      c: { d: 33 },
+      e: [1, 2, [3, 4]]
+    }
+  },
+  // 可以将需要监听的数据放入watch里面，当数据改变时推送相应的订阅事件
+  watch: {
+    a: function(val, oldVal) {
+      console.log('new: %s, old: %s', val, oldVal)
+    },
+    'b.c.d': function(val, oldVal) {
+      console.log('new: %s, old: %s', val, oldVal)
+    },
+    'b.e[2][0]': function(val, oldVal) {
+      console.log('new: %s, old: %s', val, oldVal)
+    },
+    // 不在data里面的数据项不会放入观察者列表
+    'b.e[3][4]': function(val, oldVal) {
+      console.log('new: %s, old: %s', val, oldVal)
+    },
+  },
+  onLoad(options) {
+    // 实例化watch
+    watch = new Watch(this)
+  },
+  method1() {
+    // 扩展原生小程序setData方法: (改变数据 更新视图) + 触发回调（假如有配置）
+    watch.setData({
+      a: 2,
+      'b.c.d': 3,
+      'b.e[2][0]': 444,
+      c: 123  
+    })
+    
+    // 扩展原生小程序对data对象直接赋值的操作: (改变数据 不更新视图) + 触发回调（假如有配置）
+    // watch.data(key, val)
+    watch.data('b.e[2][0]', 555)
 
-[微信小程序所有API promise化，支持await、支持请求列队](https://github.com/bigmeow/minapp-api-promise)
+    // 删除观察者，改变数据不触发回调
+    // watch.unSubscribe(key)
+    watch.unSubscribe('b.e[2][0]')
+  }
+})
+```
