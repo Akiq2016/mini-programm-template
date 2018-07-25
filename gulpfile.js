@@ -12,7 +12,7 @@ gulp.task('clean:dist', done =>
 )
 
 gulp.task('eslint:js', done =>
-  gulp.src(['src/**/*.js', '!src/libs', '!src/libs/**'])
+  gulp.src(['src/**/*.js', '!src/libs/promise.js', '!src/libs/regenerator.js'])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())

@@ -5,6 +5,7 @@ import Request from 'utils/http'
 import Tools from 'utils/tools'
 import wxApi from 'utils/wxApi'
 import Event from 'libs/event.js'
+import Store from 'store/index.js'
 
 App({
   onLaunch (options) {
@@ -55,7 +56,8 @@ App({
   Http: new Request,
   Tools: new Tools,
   event: new Event,
-  wxApi: wxApi,
+  wxApi,
+  Store,
   globalData: {
     login: false,
     userInfo: null
