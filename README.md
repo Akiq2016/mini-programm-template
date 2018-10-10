@@ -1,5 +1,7 @@
 # mini-programm-template
 
+停止维护~ 推荐使用[webpack版本](https://github.com/Cap32/wxapp-webpack-plugin)
+
 ```bash
 git clone https://github.com/Akiq2016/mini-programm-template.git yourFolderName
 cd yourFolderName
@@ -16,8 +18,6 @@ npm run dev
 # 安装 gulp 的 plugins 后，如果报错找不到 gulp 需手动重新安装 gulp4
 npm install gulp@next --save-dev
 ```
-### TODO
-- [ ] webpack 版
 
 ## Features
 - [x] 开启 eslint
